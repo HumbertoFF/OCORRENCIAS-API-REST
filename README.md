@@ -40,21 +40,26 @@ Aguarde os três containers ficarem healthy. A aplicação estará disponível e
 | pgAdmin       | http://localhost:5050/           |
 
 
-> **O projeto dispõe de uma ferramenta chamada Swagger para testes e verificação dos Endpoints disponibilizado pela API.**
-> O acesso é realizado pela url fornecida na tabela anterior, na sessão de testes será fornecida as orientações para uso da ferramenta.
->
->Credenciais MinIO Console: `minioadmin` / `minioadmin`
->
-> Para acessar o banco de dados pelo console web. 
-> - Deve-se acessar o link http://localhost:5050/
-> - Realizar o login com as credenciais: `admin@admin.com` / `admin`
-> - Criar a conexão com o banco, clicando com o botão direito no Servers > Register > Server.
->   - Na aba General coloque um nome para a conexão e na aba Connection utilize as seguintes credenciais:
->     - Host name/address: ocorrencias-postgres
->     - Port: 5432
->     - Maintenance database: ocorrencias_db
->     - Username: postgres
->     - Password: postgres
+**O projeto dispõe de uma ferramenta chamada Swagger para testes e verificação dos Endpoints disponibilizado pela API.**
+
+O acesso é realizado pela url fornecida na tabela anterior, na sessão de testes será fornecida as orientações para uso da ferramenta.
+
+Credenciais MinIO Console: `minioadmin` / `minioadmin`
+
+Para acessar o banco de dados pelo console do pgAdmin no navegador. 
+```bash
+Deve-se acessar o link http://localhost:5050/
+Realizar o login com as credenciais: `admin@admin.com` / `admin`
+Criar a conexão com o banco, clicando com o botão direito no Servers > Register > Server.
+Na aba General coloque um nome para a conexão e na aba Connection utilize as seguintes credenciais:
+
+-Host name/address: ocorrencias-postgres
+-Port: 5432
+-Maintenance database: ocorrencias_db
+-Username: postgres
+-Password: postgres
+```
+
 ---
 ## Como realizar os testes
 ### Autenticação
@@ -69,7 +74,11 @@ Acesse a url da ferramenta http://localhost:8080/swagger-ui.html
 Todos os endpoints (exceto /login) exigem o token JWT no header. 
 Após o login, clique em Authorize(no início da página) no Swagger e cole: Bearer <seu_token>
 
-POST	/api/v1/auth/login clique em Try it out para autenticar o usuário e obter token JWT
+```bash
+POST	/api/v1/auth/login 
+```
+
+Clique em Try it out para autenticar o usuário e obter token JWT
 
 Corpo da Requisição (JSON):
 ```json
@@ -98,7 +107,9 @@ Resposta de Sucesso:
 
 ### 2. Clientes
 
+```bash
 POST	/api/v1/clientes	Criar novo cliente
+```
 
 Corpo da Requisição (JSON):
 ```json
@@ -124,8 +135,9 @@ Resposta de Sucesso:
 > - 400	CPF inválido, campo obrigatório ausente ou CPF duplicado 
 > - 401	Token ausente ou expirado
 
-
+```bash
 GET	/api/v1/clientes?page=0&size=10	Listar clientes paginado
+```
 
 Ordenação padrão: nmeCliente. Para alterar: ?sort=dtaCriacao,desc
 
@@ -144,8 +156,9 @@ Resposta de Sucesso:
 > - 200	Lista retornada com sucesso 
 > - 401	Token ausente ou expirado
 
-
+```bash
 GET	/api/v1/clientes/{id}	Buscar cliente pelo ID
+```
 
 Resposta de Sucesso:
 ```json
@@ -162,7 +175,9 @@ Resposta de Sucesso:
 > - 404	Cliente não encontrado para o ID informado 
 > - 401	Token ausente ou expirado
 
+```bash
 PUT	/api/v1/clientes/{id}	Atualizar cliente existente
+```
 
 Corpo da Requisição (JSON):
 ```json
@@ -190,8 +205,9 @@ Resposta de Sucesso:
 > - 400	CPF inválido ou campos obrigatórios ausentes  
 > - 401	Token ausente ou expirado
 
-
+```bash
 DELETE	/api/v1/clientes/{id}	Remover cliente pelo ID
+```
 
 > Códigos de Status: 
 > - 204	Cliente removido — sem corpo na resposta 
@@ -200,7 +216,9 @@ DELETE	/api/v1/clientes/{id}	Remover cliente pelo ID
 
 ### 3. Endereços
 
+```bash
 POST	/api/v1/enderecos	Criar novo endereço
+```
 
 CEP deve conter exatamente 8 dígitos numéricos sem hífen. Exemplo: 01310100
 
@@ -231,7 +249,9 @@ Resposta de Sucesso:
 > - 400	CEP com tamanho diferente de 8 dígitos ou campo obrigatório ausente 
 > - 401	Token ausente ou expirado
 
+```bash
 GET	/api/v1/enderecos?page=0&size=10	Listar endereços paginado
+```
 
 Ordenação padrão: nmeCidade. Para alterar: ?sort=nmeEstado,asc
 
@@ -250,7 +270,9 @@ Resposta de Sucesso:
 > - 200	Lista retornada com sucesso 
 > - 401	Token ausente ou expirado
 
+```bash
 GET	/api/v1/enderecos/{id}	Buscar endereço pelo ID
+```
 
 Resposta de Sucesso:
 ```json
@@ -269,8 +291,9 @@ Resposta de Sucesso:
 > - 404	Endereço não encontrado para o ID informado  
 > - 401	Token ausente ou expirado
 
-
+```bash
 PUT	/api/v1/enderecos/{id}	Atualizar endereço existente
+```
 
 Corpo da Requisição (JSON):
 ```json
@@ -300,8 +323,9 @@ Resposta de Sucesso:
 > - 400	CEP inválido ou campos obrigatórios ausentes 
 > - 401	Token ausente ou expirado
 
-
+```bash
 DELETE	/api/v1/enderecos/{id}	Remover endereço pelo ID
+```
 
 >Códigos de Status:
 > - 204	Endereço removido — sem corpo na resposta 
@@ -316,7 +340,9 @@ O cadastro de ocorrência usa multipart/form-data — no Swagger, o campo 'dados
 
 **4.1 Cadastrar Ocorrência**
 
+```bash
 POST	/api/v1/ocorrencias	Cadastrar ocorrência — multipart/form-data
+```
 
 Content-Type: multipart/form-data  |  Campo 'dados' (JSON) + campo 'imagens' (arquivos, opcional)
 
@@ -365,7 +391,9 @@ Resposta de Sucesso (201):
 
 
 **4.2 Listar Ocorrências com Filtros**
+```bash
 GET	/api/v1/ocorrencias	Listar com filtros, paginação e ordenação
+```
 
 >Parâmetros de Query disponíveis:
 > Parâmetro	Tipo	Exemplo 
@@ -386,8 +414,9 @@ Campos ordenáveis: dtaOcorrencia e endereco.nmeCidade — direções: asc ou de
 > - 200	Lista retornada com paginação e links de imagem nas fotos 
 > - 401	Token ausente ou expirado
 
-
+```bash
 GET	/api/v1/ocorrencias/{id}	Buscar ocorrência por ID
+```
 
 Resposta de Sucesso:
 ```json
@@ -407,7 +436,9 @@ Resposta de Sucesso:
 
 **4.3 Finalizar Ocorrência**
 
+```bash
 PATCH	/api/v1/ocorrencias/{id}/finalizar	Finalizar ocorrência — sem corpo na requisição
+```
 
 REGRA DE NEGÓCIO: Uma vez FINALIZADA, a ocorrência não pode ser alterada. Qualquer tentativa de edição ou novo upload retorna erro.
 
@@ -425,7 +456,9 @@ Fluxo de teste recomendado:
 
 **4.4 Adicionar Fotos a uma Ocorrência**
 
+```bash
 POST	/api/v1/ocorrencias/{id}/fotos	Upload de imagens — multipart/form-data
+```
 
 Campo 'fotos': um ou mais arquivos de imagem (PNG, JPG, etc.). Enviados ao MinIO e link gerado automaticamente.
 
@@ -451,8 +484,9 @@ Resposta de Sucesso (200):
 > - 404	Ocorrência não encontrada 
 > - 401	Token ausente ou expirado
 
-
+```bash
 DELETE	/api/v1/ocorrencias/{id}	Remover ocorrência — bloqueado se finalizada
+```
 
 Ocorrências com status FINALIZADA não podem ser removidas.
 

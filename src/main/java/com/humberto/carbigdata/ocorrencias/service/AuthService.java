@@ -26,8 +26,6 @@ public class AuthService {
   private long expiracaoMs;
 
   public LoginResponse autenticar(LoginRequest request) {
-    log.info("Tentativa de login: {}", request.getEmail());
-
 
     Usuario usuario = usuarioRepository.findByDscEmail(request.getEmail())
       .orElseThrow(() -> {
@@ -38,12 +36,7 @@ public class AuthService {
     String hashNoBanco = usuario.getPassword();
     String senhaDigitada = request.getSenha();
 
-    log.info("Hash no banco: [{}]", hashNoBanco);
-    log.info("Hash length: {}", hashNoBanco.length());
-    log.info("Primeiro char ASCII: {}", (int) hashNoBanco.charAt(0));
-
     boolean matches = ENCODER.matches(senhaDigitada, hashNoBanco);
-    log.info("Senha confere: {}", matches);
 
     if (!matches) {
       log.warn("Senha incorreta para: {}", request.getEmail());
@@ -51,7 +44,6 @@ public class AuthService {
     }
 
     String token = jwtService.generateToken(usuario);
-    log.info("Login bem-sucedido: {}", usuario.getDscEmail());
     LoginResponse loginResponse = new LoginResponse();
     loginResponse.setToken(token);
     loginResponse.setTipo("Bearer");

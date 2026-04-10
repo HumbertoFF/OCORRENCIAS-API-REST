@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
 import java.security.MessageDigest;
 import java.util.HexFormat;
 import java.util.UUID;
@@ -54,20 +53,6 @@ public class MinioStorageService {
     } catch (Exception e) {
       log.error("Erro ao fazer upload para o MinIO", e);
       throw new RuntimeException("Falha ao armazenar arquivo: " + e.getMessage(), e);
-    }
-  }
-
-  public InputStream download(String objectName) {
-    try {
-      return minioClient.getObject(
-        GetObjectArgs.builder()
-          .bucket(bucket)
-          .object(objectName)
-          .build()
-      );
-    } catch (Exception e) {
-      log.error("Erro ao baixar objeto do MinIO: {}", objectName, e);
-      throw new RuntimeException("Falha ao acessar arquivo: " + e.getMessage(), e);
     }
   }
 

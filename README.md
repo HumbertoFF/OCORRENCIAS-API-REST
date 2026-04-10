@@ -26,10 +26,11 @@ Desenvolvedor Humberto Freitas da Silva Filho
 ### Subir tudo com um único comando dentro da pasta do projeto
 
 ```bash
-docker-compose up --build
+docker compose --env-file .env.development up -d
 ```
+> obs: .env.development arquivo para guardar as variáveis de ambiente de desenvolvimento. Para ambiente em produção utilizar .env seguindo o mesmo padrão do .env.development
 
-Aguarde os três containers ficarem healthy. A aplicação estará disponível em:
+Aguarde os containers ficarem healthy. A aplicação estará disponível em:
 
 | Serviço       | URL                              |
 |---------------|----------------------------------|

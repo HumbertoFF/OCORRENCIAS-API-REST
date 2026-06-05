@@ -2,10 +2,10 @@
 
 API REST desenvolvida em Java 17 + Spring Boot  
 
-## Desenvolvedor Humberto Freitas da Silva Filho
+Desenvolvedor Humberto Freitas da Silva Filho
 
 ## Para que serve?
-## Este sistema foi desenvolvido para atender setores que dependem de documentação e rastreamento de ocorrências, como:
+### Este sistema foi desenvolvido para atender setores que dependem de documentação e rastreamento de ocorrências, como:
 
 ### 1. Órgãos de Segurança Pública
 
@@ -87,9 +87,8 @@ Priorização de resoluções
 
 
 ## Diagrama do Banco de dados
-![](/home/humbertoff/Downloads/ocorrencias_database_diagram.svg)
 
----
+![Diagrama ER da API de Ocorrências](./docs/diagrama_banco_dados.svg)
 
 ## Tecnologias
 

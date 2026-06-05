@@ -10,6 +10,6 @@ CREATE TABLE usuario (
 INSERT INTO usuario (nme_usuario, dsc_email, dsc_senha)
 VALUES (
     'Administrador',
-    'admin@carbigdata.com.br',
+    'admin@admin.com.br',
     '$2a$10$cz1beNbJ4nXabTA7/VSPBecJHLCuGH8/aTFrxHVRh2OJ7BZqk1EGa'
 );

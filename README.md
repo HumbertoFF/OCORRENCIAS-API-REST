@@ -1,6 +1,6 @@
 # Ocorrências API
 
-API REST desenvolvida em Java 17 + Spring Boot para o desafio técnico **Backend Java Pleno — Carbigdata**.
+API REST desenvolvida em Java 17 + Spring Boot para o desafio técnico **Backend Java Pleno**.
 
 Desenvolvedor Humberto Freitas da Silva Filho
 
@@ -84,7 +84,7 @@ Clique em Try it out para autenticar o usuário e obter token JWT
 Corpo da Requisição (JSON):
 ```json
 {
-  "email": "admin@carbigdata.com.br",
+  "email": "admin@admin.com.br",
   "senha": "admin123"
 }
 ```
@@ -516,7 +516,7 @@ Ocorrências com status FINALIZADA não podem ser removidas.
 | Upload de foto em ocorrência finalizada | 4xx	 | POST /fotos após finalizar a ocorrência  |
 | Deletar ocorrência finalizada  | 4xx  |  	DELETE em ocorrência com status FINALIZADA |
 
-Ocorrências API — Carbigdata  |  Testes via Swagger UI: http://localhost:8080/swagger-ui.html
+Ocorrências API  |  Testes via Swagger UI: http://localhost:8080/swagger-ui.html
 ---
 
 ## Parar os containers

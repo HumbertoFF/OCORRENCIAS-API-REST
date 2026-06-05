@@ -8,7 +8,7 @@
     <version>3.5.13</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
-  <groupId>com.humberto.carbigdata</groupId>
+  <groupId>com.humberto.br</groupId>
   <artifactId>ocorrencias-api</artifactId>
   <version>1.0.0</version>
   <name/>

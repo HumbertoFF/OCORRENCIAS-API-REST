@@ -1,8 +1,93 @@
 # Ocorrências API
 
-API REST desenvolvida em Java 17 + Spring Boot para o desafio técnico **Backend Java Pleno**.
+API REST desenvolvida em Java 17 + Spring Boot  
 
-Desenvolvedor Humberto Freitas da Silva Filho
+## Desenvolvedor Humberto Freitas da Silva Filho
+
+## Para que serve?
+## Este sistema foi desenvolvido para atender setores que dependem de documentação e rastreamento de ocorrências, como:
+
+### 1. Órgãos de Segurança Pública
+
+Registro de ocorrências policiais e boletins de ocorrência (BO)
+Documentação de cenas de crime com fotos e localização
+Rastreabilidade completa: quem registrou, quando, onde e status
+
+### 2. Empresas de Seguros
+
+Abertura de sinistros com foto de dano/evidência
+Vinculação automática dos dados do cliente ao registro
+Acompanhamento do processo até finalização
+
+### 3. Órgãos Ambientais e Fiscalização
+
+Registro de denúncias ambientais ou infrações
+Localização geográfica (CEP/cidade) para análise
+Documentação visual para investigação posterior
+
+### 4. Serviços de Atendimento ao Cliente
+
+Gerenciamento de reclamações e solicitações
+Rastreamento do status (aberta → resolvida)
+Base de dados de clientes com histórico completo
+
+### 5. Órgãos Municipais e Prefeituras
+
+Denúncias de problemas urbanos (buraco na rua, iluminação, etc.)
+Mapeamento geográfico das ocorrências pela cidade
+Priorização de resoluções
+
+
+
+## Fluxo de Negócio
+## Caso de Uso Principal
+
+### 1. AUTENTICAÇÃO
+   ↓
+   Usuário faz login com email e senha
+   → Recebe token JWT válido por 30 minutos
+   → Token necessário para todos os próximos passos
+
+### 2. REGISTRO DE OCORRÊNCIA
+   ↓
+   Usuário fornece:
+   • Dados do cliente (nome, CPF, data de nascimento)
+   • Endereço onde ocorreu o fato (rua, bairro, CEP, cidade)
+   • Fotos/documentos de evidência (opcional no cadastro)
+
+   → Sistema valida CPF e CEP
+   → Cria novo cliente ou reutiliza existente
+   → Cria novo endereço ou reutiliza existente
+   → Gera ID único da ocorrência
+   → Armazena fotos em bucket MinIO
+   → Retorna links públicos para as fotos
+
+### 3. GESTÃO DE FOTOS (Opcional)
+   ↓
+   Mesmo após cadastro, é possível:
+   • Adicionar mais fotos à ocorrência
+   • Gerar evidência visual cronológica
+   → Bloqueado se ocorrência for finalizada
+
+### 4. FINALIZAÇÃO
+   ↓
+   Quando caso é resolvido:
+   • Marca ocorrência como FINALIZADA
+   • Torna imutável → não permite mais alterações
+   → Preserva integridade histórica do registro
+
+### 5. CONSULTA E RELATÓRIOS
+   ↓
+   Sistema permite:
+   • Buscar ocorrências por cliente/CPF
+   • Filtrar por data de registro
+   • Localizar por cidade
+   • Ordenar por data ou localidade
+   → Suporta paginação para grandes volumes
+
+
+## Diagrama do Banco de dados
+![](/home/humbertoff/Downloads/ocorrencias_database_diagram.svg)
 
 ---
 
